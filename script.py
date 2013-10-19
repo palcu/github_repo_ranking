@@ -12,6 +12,7 @@ for line in teams_file:
     teams.append(line.strip())
 
 github_url = "https://api.github.com/repos/rosedu/{0}/stats/contributors"
+data = "<html><body><h1>Facebook Hackathon - Number of commits</h1><ul>"
 
 for team in teams:
     req = requests.get(github_url.format(team), auth=(config['user'], config['password']))
@@ -26,6 +27,8 @@ for team in teams:
         except:
             pass
 
-    print "{0} - {1}".format(team, noCommits)
+    data += "<li>{0} - {1}</li>".format(team, noCommits)
     time.sleep(3)
+data += "</ul></body></html>"
 
+print data
