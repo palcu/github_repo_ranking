@@ -1,5 +1,6 @@
 import json
 import requests
+import time
 import yaml
 
 config = yaml.load(file("settings.yml"))
@@ -19,9 +20,12 @@ for team in teams:
     noLOC = 0
 
     for author in response:
-        noCommits += author['total']
-        noLOC += author['weeks'][0]['a'] + author['weeks'][0]['d']
+        try:
+            noCommits += author['total']
+            noLOC += author['weeks'][0]['a'] + author['weeks'][0]['d']
+        except:
+            pass
 
     print "{0} - {1}".format(team, noCommits)
-
+    time.sleep(3)
 
