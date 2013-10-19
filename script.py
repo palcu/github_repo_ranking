@@ -15,7 +15,7 @@ github_url = "https://api.github.com/repos/rosedu/{0}/stats/contributors"
 data = "<html><body><h1>Facebook Hackathon - Number of commits</h1><ul>"
 
 for team in teams:
-    req = requests.get(github_url.format(team), auth=(config['user'], config['password']))
+    req = requests.get(github_url.format(team), auth=(config['user'], config['password']), timeout=5)
     response = json.loads(req.content)
     noCommits = 0
     noLOC = 0
@@ -28,7 +28,7 @@ for team in teams:
             pass
 
     data += "<li>{0} - {1} - {2}</li>".format(team, noCommits, noLOC)
-    time.sleep(3)
+    #time.sleep(3)
 data += "</ul></body></html>"
 
 print data
