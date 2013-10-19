@@ -27,7 +27,7 @@ for team in teams:
         except:
             pass
 
-    data += "<li>{0} - {1}</li>".format(team, noCommits)
+    data += "<li>{0} - {1} - {2}</li>".format(team, noCommits, noLOC)
     time.sleep(3)
 data += "</ul></body></html>"
 
